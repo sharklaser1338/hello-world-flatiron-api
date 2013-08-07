@@ -1,30 +1,25 @@
-var flatiron  = require('flatiron')
-  , app       = flatiron.app
-  ;
+var app = require('http').createServer(handler),
+ io = require('socket.io').listen(app),
+  fs = require('fs')
 
-app.use(flatiron.plugins.http, 
-{ "before" : [ require('./middleware/uuid') ]
-, "onError": function not_found(err) {
-    this.res.json(404, { "error": "not_found" });
-  }
+app.listen(80);
+
+function handler (req, res) {
+  fs.readFile(__dirname + '/index.html',
+  function (err, data) {
+    if (err) {
+      res.writeHead(500);
+      return res.end('Error loading index.html');
+    }
+
+    res.writeHead(200);
+    res.end(data);
+  });
+}
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
 });
-
-var sys = require("sys"),  
-my_http = require("http"),
-fs = require('fs'),
-
-filepath = "./index.html";
- 
- fs.readFile(filepath, function(err, html){
- 	my_http.createServer(function(request,response){  
-    	sys.puts("I got kicked!");  
-    	response.writeHeader(200, {"Content-Type": "text/plain"});  
-    	response.write(html);  
-    	response.end();  
-		}).listen(8080);  
-		sys.puts("Server Running on 8080");
- });
-
-
-
-app.start(3000, function () { console.log({"flatiron": "ok"}); });
