@@ -29,13 +29,16 @@
 	<script>
   		var socket = io.connect('http://sharklaser1338.jit.su/');
   		socket.on("message_to_client", function(data) {
-    		document.getElementById("chatlog").innerHTML = ("<hr/>" +
+    		document.getElementById("chatlog").innerHTML = ("<hr/>Your IP is:" +
     		data['message'] + document.getElementById("chatlog").innerHTML);
 	});
 
   		function sendMessage() {
-    		var msg = document.getElementById("message_input").value;
-    	socket.emit("message_to_server", { message : msg});
+  			var address = socket.handshake.address;
+    		var msg = address; 
+    		//document.getElementById("message_input").value;
+    		socket.emit("message_to_server", { message : msg}
+    	);
 }
 	</script>
 </html>
