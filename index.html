@@ -34,8 +34,8 @@
 	});
 
   		function sendMessage() {
-  			console.log(socket.handshake.address.address);
-  			var address = socket.handshake.address();
+  			
+  			var address = socket.address().address;
 
     		var msg = address; 
     		socket.emit("message_to_server", { message : msg}
