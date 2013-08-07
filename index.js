@@ -17,7 +17,7 @@ filepath = "index.html";
  
  fs.readFile(filepath, function(err, html){
  	my_http.createServer(function(request,response){  
-    	sys.puts("I got kicked");  
+    	sys.puts("I got kicked!");  
     	response.writeHeader(200, {"Content-Type": "text/plain"});  
     	response.write(html);  
     	response.end();  
