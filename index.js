@@ -9,8 +9,8 @@ app.use(flatiron.plugins.http,
   }
 });
 
-var port = 8000;
-var serverUrl = "127.0.0.1";
+var port = 8080;
+var serverUrl = "sharklaser1338.jit.su";
  
 var http = require("http");
 var path = require("path");
