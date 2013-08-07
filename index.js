@@ -18,7 +18,9 @@ function handler (req, res) {
 }
 
   io.sockets.on('connection', function(socket) {
+    msg = socket.handshake.address.address;
     socket.on('message_to_server', function(data) {
+      data = {message : msg};
         io.sockets.emit("message_to_client",{ message: data["message"] });
     });
 });
