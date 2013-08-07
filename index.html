@@ -35,7 +35,7 @@
 
   		function sendMessage() {
     		var msg = document.getElementById("message_input").value;
-    	socketio.emit("message_to_server", { message : msg});
+    	socket.emit("message_to_server", { message : msg});
 }
 	</script>
 </html>

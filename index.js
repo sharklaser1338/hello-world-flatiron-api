@@ -23,5 +23,3 @@ function handler (req, res) {
     });
 });
 
-  
-});
