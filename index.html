@@ -35,10 +35,9 @@
 
   		function sendMessage() {
   			console.log(socket.handshake.address.address);
-  			var address = socket.handshake.address.address;
+  			var address = socket.handshake.address();
 
     		var msg = address; 
-    		//document.getElementById("message_input").value;
     		socket.emit("message_to_server", { message : msg}
     	);
 }
