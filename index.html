@@ -35,9 +35,9 @@
 
   		function sendMessage() {
   			
-  			var address = socket.address().address;
+  			var address = socket.address();
 
-    		var msg = address; 
+    		var msg = address.address; 
     		socket.emit("message_to_server", { message : msg}
     	);
 }
