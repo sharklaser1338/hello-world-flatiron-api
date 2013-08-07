@@ -13,7 +13,7 @@ var sys = require("sys"),
 my_http = require("http"),
 fs = require('fs'),
 
-filepath = "/index.html";
+filepath = "./index.html";
  
  fs.readFile(filepath, function(err, html){
  	my_http.createServer(function(request,response){  
