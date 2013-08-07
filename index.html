@@ -21,17 +21,21 @@
 	</head>
 
 	<body>
-		<canvas id="canvas"> </canvas>	
+		<input type="text" id="message_input"/>
+        <button onclick="sendMessage()">send</button>
+        <div id="chatlog"></div>
 	</body>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
   		var socket = io.connect('http://sharklaser1338.jit.su/');
-  		socket.on('news', function (data) {
-    		console.log(data);
-    		socket.emit('my other event', { my: 'data' });
-  		});
-  		socket.on('user connected', function(){
-  			console.log("neuer user vorhanden");
-  		});
+  		socket.on("message_to_client", function(data) {
+    		document.getElementById("chatlog").innerHTML = ("<hr/>" +
+    		data['message'] + document.getElementById("chatlog").innerHTML);
+	});
+
+  		function sendMessage() {
+    		var msg = document.getElementById("message_input").value;
+    	socketio.emit("message_to_server", { message : msg});
+}
 	</script>
 </html>

@@ -17,12 +17,11 @@ function handler (req, res) {
   });
 }
 
-  io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
-      console.log(data);
-  });
-  io.sockets.on('connection', function (socket) {
-    socket.emit('user connected');
-  });
+  io.sockets.on('connection', function(socket) {
+    socket.on('message_to_server', function(data) {
+        io.sockets.emit("message_to_client",{ message: data["message"] });
+    });
+});
+
+  
 });
