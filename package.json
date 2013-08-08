@@ -2,7 +2,7 @@
   "name": "hello-world-api-flatiron",
   "subdomain": "sharklaser1338",
   "description": "Sample API in Flatironjs",
-  "version": "0.0.1-31",
+  "version": "0.0.1-33",
   "dependencies": {
     "flatiron": "0.1.x",
     "union": "0.1.x",
